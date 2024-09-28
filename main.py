@@ -1,9 +1,9 @@
 import numpy as np
-
+from data_init import find_data, create_anime_df
 
 def main(id):
-    user_data, y_train = find_data(users_file, id)  # The watching or completed
-    anime_df = create_anime_df(file_name)  # Enumrate geners and create vectors
+    user_data, y_train = find_data("UserAnimeList.csv", id)  # The watching or completed
+    anime_df = create_anime_df("AnimeList.csv")  # Enumrate geners and create vectors
     # assert user_data.shape[1] == anime_df.shape[1]?
     X_train = [vectorize_anime(anime) for anime in user_data]
     # from anime_df pick random X animes (X=1000)
