@@ -1,11 +1,15 @@
 import pandas as pd
-from pick_user import pick_user
+from user import pick_random_user, get_user_data
 import numpy as np
 from data_init import find_data, create_anime_df
 
 
 def main():
-    username = pick_user()
+    username = pick_random_user()
+
+    user_df = get_user_data(username)
+
+    print(user_df)
 
     return
     user_data, y_train = find_data(
