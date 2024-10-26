@@ -2,6 +2,7 @@ import pandas as pd
 from user import pick_random_user, get_user_data
 import numpy as np
 from data_init import find_data, create_anime_df
+from anime import get_all_anime, vectorize_anime
 
 
 def main():
@@ -9,13 +10,9 @@ def main():
 
     user_df = get_user_data(username)
 
-    print(user_df)
+    anime_data = get_all_anime("AnimeList.csv")
 
     return
-    user_data, y_train = find_data(
-        "UserAnimeList.csv", id)  # The watching or completed
-    # Enumrate geners and create vectors
-    anime_df = create_anime_df("AnimeList.csv")
     # assert user_data.shape[1] == anime_df.shape[1]?
     X_train = [vectorize_anime(anime) for anime in user_data]
     # from anime_df pick random X animes (X=1000)
