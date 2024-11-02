@@ -1,7 +1,7 @@
+from anime import get_all_genres, get_all_anime, vectorize_anime, get_example
 import pandas as pd
 from user import pick_random_user, get_user_data
 import numpy as np
-from anime import get_all_genres, get_all_anime, vectorize_anime
 
 
 def main():
