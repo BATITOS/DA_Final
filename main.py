@@ -1,15 +1,17 @@
 import pandas as pd
 from user import pick_random_user, get_user_data
 import numpy as np
-from anime import get_all_anime, vectorize_anime
+from anime import get_all_genres, get_all_anime, vectorize_anime
 
 
 def main():
+    print(vectorize_anime(get_all_anime().iloc[[0], :]))
+    return
     username = pick_random_user()
 
     user_df = get_user_data(username)
 
-    anime_data = get_all_anime("AnimeList.csv")
+    anime_data = get_all_anime()
 
     return
     # assert user_data.shape[1] == anime_df.shape[1]?
