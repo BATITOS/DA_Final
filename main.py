@@ -11,11 +11,11 @@ def main():
 
     user_df = get_user_data(username)
 
-    anime_data = get_all_anime()
+    anime_df = get_all_anime()
 
     return
     # assert user_data.shape[1] == anime_df.shape[1]?
-    X_train = [vectorize_anime(anime) for anime in user_data]
+    X_train = [vectorize_anime(anime) for anime in user_df]
     # from anime_df pick random X animes (X=1000)
     X_all = [vectorize_anime(anime) for anime in anime_df[:1000]]
 

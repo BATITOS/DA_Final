@@ -33,6 +33,7 @@ def get_all_genres() -> set:
 
 
 example_vector = None
+g_indices = None
 
 
 def init_example():
@@ -54,10 +55,11 @@ def init_example():
     typelist = list(anime_data['type'].unique())
     typelist.sort()
 
-    global example_vector
+    global example_vector, g_indices
+    g_indices = ['anime_id'] + genreslist + studioslist + producerlist + \
+                ['members', 'popularity', 'episodes'] + sourcelist + typelist
     example_vector = pd.DataFrame(
-        index=['anime_id'] + genreslist + studioslist + producerlist +
-        ['members', 'popularity', 'episodes'] + sourcelist + typelist)
+        index=g_indices)
 
     return example_vector
 
@@ -68,3 +70,16 @@ init_example()
 def get_example():
     global example_vector
     return example_vector
+
+
+# returned array has the first column as anime_id
+def vectorize_anime(anime: pd.DataFrame):
+    global example_vector, g_indices
+    array = np.zeros((anime.shape[0], len(g_indices)))
+    import ipdb; ipdb.set_trace()
+    for i, row in anime.iterrows():
+        array[0, i] = row['anime_id']
+
+        ### TODO, rest of data
+
+    return array
