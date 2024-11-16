@@ -73,13 +73,44 @@ def get_example():
 
 
 # returned array has the first column as anime_id
+# anime_id shouldn't be used in training data
 def vectorize_anime(anime: pd.DataFrame):
     global example_vector, g_indices
     array = np.zeros((anime.shape[0], len(g_indices)))
-    import ipdb; ipdb.set_trace()
-    for i, row in anime.iterrows():
-        array[0, i] = row['anime_id']
 
-        ### TODO, rest of data
+    for i, row in anime.iterrows():
+        # base data
+        array[i, 0] = row['anime_id']
+        array[i, 1] = row['members']
+        array[i, 2] = row['popularity']
+        array[i, 3] = row['episodes']
+
+        # genres
+        genrestring = row['genre']
+        genresset = {genre.strip()
+                     for genre in str(genrestring).split(sep=',')}
+        for genre in genresset:
+            index = g_indices.index(genre)
+            array[i, index] = 1
+
+        # studio
+        studio = row['studio']
+        index = g_indices.index(studio)
+        array[i, index] = 1
+
+        # producer
+        producer = row['producer']
+        index = g_indices.index(producer)
+        array[i, index] = 1
+
+        # source
+        source = row['producer']
+        index = g_indices.index(source)
+        array[i, index] = 1
+
+        # atype
+        atype = row['producer']
+        index = g_indices.index(atype)
+        array[i, index] = 1
 
     return array
