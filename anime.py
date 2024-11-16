@@ -56,8 +56,8 @@ def init_example():
     typelist.sort()
 
     global example_vector, g_indices
-    g_indices = ['anime_id'] + genreslist + studioslist + producerlist + \
-                ['members', 'popularity', 'episodes'] + sourcelist + typelist
+    g_indices = ['anime_id', 'members', 'popularity', 'episodes'] + genreslist\
+        + studioslist + producerlist + sourcelist + typelist
     example_vector = pd.DataFrame(
         index=g_indices)
 
