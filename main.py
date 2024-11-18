@@ -5,19 +5,27 @@ import numpy as np
 
 
 def main():
-    print(vectorize_anime(get_all_anime().iloc[[0], :]))
-    return
-    username = pick_random_user()
-
-    user_df = get_user_data(username)
-
     anime_df = get_all_anime()
 
-    return
-    # assert user_data.shape[1] == anime_df.shape[1]?
-    X_train = [vectorize_anime(anime) for anime in user_df]
+    # username = pick_random_user()
+    # this user was picked because he has a small number of anime
+    # and they fit nicely to a print
+    # TODO: return to what it was
+    username = "terune_uzumaki"
+    user_df = get_user_data(username)
+
+    user_anime_df = anime_df.loc[anime_df['anime_id'].isin(
+        user_df['anime_id'])]
+
+    assert user_anime_df.shape[1] == anime_df.shape[1]
+
+    X_train = vectorize_anime(user_anime_df)
+    y_train = user_df['my_score'].to_numpy()
+
     # from anime_df pick random X animes (X=1000)
-    X_all = [vectorize_anime(anime) for anime in anime_df[:1000]]
+    X_all = vectorize_anime(anime_df)
+
+    # HERE we have all we need to start work
 
     # create a lingear regression model with user_data and anime_df
     # y is the user score
