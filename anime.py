@@ -78,7 +78,8 @@ def vectorize_anime(anime: pd.DataFrame):
     global example_vector, g_indices
     array = np.zeros((anime.shape[0], len(g_indices)))
 
-    for i, row in anime.iterrows():
+    i = 0
+    for _, row in anime.iterrows():
         # base data
         array[i, 0] = row['anime_id']
         array[i, 1] = row['members']
@@ -112,5 +113,7 @@ def vectorize_anime(anime: pd.DataFrame):
         atype = row['producer']
         index = g_indices.index(atype)
         array[i, index] = 1
+
+        i += 1
 
     return array
