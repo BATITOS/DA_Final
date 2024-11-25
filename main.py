@@ -2,9 +2,7 @@ from anime import get_all_genres, get_all_anime, vectorize_anime, get_example
 import pandas as pd
 from user import pick_random_user, get_user_data
 import numpy as np
-from regression import linear_reg
-from randomforest import random_forest
-from svm import svm
+from model import linear_reg, random_forest, svm
 
 
 def main():
@@ -18,7 +16,7 @@ def main():
 
     # intersection of dataframes
     user_anime_df = anime_df.loc[anime_df['anime_id'].isin(
-        user_df['anime_id'])]
+                                 user_df['anime_id'])]
     user_scores_df = user_df.loc[user_df['anime_id'].isin(
                                  anime_df['anime_id'])]
 
@@ -39,6 +37,9 @@ def main():
     top_three = np.sort(y1_pred)[:3]  # need to make sure index is appropiate
 
     # print those names
+    print(y1_pred.min(), y1_pred.max())
+    print(y2_pred.min(), y2_pred.max())
+    print(y3_pred.min(), y3_pred.max())
 
 
 if __name__ == "__main__":
