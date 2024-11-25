@@ -28,12 +28,13 @@ def main():
     X_all = vectorize_anime(anime_df)
 
     # HERE we have all we need to start work
-    y1_pred = linear_reg(X_train[:,1:], y_train, X_all[:,1:])
-    y2_pred = random_forest(X_train[:,1:], y_train, X_all[:,1:])
-    y3_pred = svm(X_train[:,1:], y_train, X_all[:,1:])
-    
+    y1_pred = linear_reg(X_train[:, 1:], y_train, X_all[:, 1:])
+    y2_pred = random_forest(X_train[:, 1:], y_train, X_all[:, 1:])
+    y3_pred = svm(X_train[:, 1:], y_train, X_all[:, 1:])
+
     # run those animes into regression model and pick top 3
     top_three = np.sort(y1_pred)[:3]  # need to make sure index is appropiate
+
     # print those names
 
 
