@@ -2,11 +2,10 @@ from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 
 
-def linear_reg(X, y, x_all):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+def linear_reg(X, y, X_all):
     model = linear_model.LinearRegression()
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
+    model.fit(X, y)
+    y_pred = model.predict(X_all)
 
     # print('Coefficients:' , model.coef_)
     # print('Intercept:', model.intercept_)

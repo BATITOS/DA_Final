@@ -2,7 +2,9 @@ from anime import get_all_genres, get_all_anime, vectorize_anime, get_example
 import pandas as pd
 from user import pick_random_user, get_user_data
 import numpy as np
-
+from regression import linear_reg
+from randomforest import random_forest
+from svm import svm
 
 def main():
     anime_df = get_all_anime()
@@ -26,12 +28,12 @@ def main():
     X_all = vectorize_anime(anime_df)
 
     # HERE we have all we need to start work
-
-    # create a lingear regression model with user_data and anime_df
-    # y is the user score
-    y_pred = _predict(X_train, y_train, X_all)  # placeholder
+    y1_pred = linear_reg(X_train[:,1:], y_train, X_all[:,1:])
+    y2_pred = random_forest(X_train[:,1:], y_train, X_all[:,1:])
+    y3_pred = svm(X_train[:,1:], y_train, X_all[:,1:])
+    
     # run those animes into regression model and pick top 3
-    top_three = np.sort(y_pred)[:3]  # need to make sure index is appropiate
+    top_three = np.sort(y1_pred)[:3]  # need to make sure index is appropiate
     # print those names
 
 
