@@ -8,9 +8,6 @@ def main():
     anime_df = get_all_anime()
 
     username = pick_random_user()
-    # this user can be picked because he has a small number of anime
-    # and they fit nicely to a print
-    # username = "terune_uzumaki"
     user_df = get_user_data(username)
 
     # intersection of dataframes
@@ -70,7 +67,7 @@ def main():
         f"3. {matching_titles_rf[2]}\n"
     )
 
-    # Printing matching titles from linear regression model.
+    # Printing matching titles from SVM model.
     print(
         "These are the top 3 animes for you according to the SVM model:\n"
         f"1. {matching_titles_svm[0]}\n"
