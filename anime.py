@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-cols = ['anime_id', 'title', 'genre', 'studio', 'producer', 'members', 'popularity',
-        'episodes', 'source', 'type']
+cols = ['anime_id', 'title', 'genre', 'studio', 'producer', 'members',
+        'popularity', 'episodes', 'source', 'type']
 
 anime_data = None
 
