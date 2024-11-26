@@ -8,7 +8,7 @@ def main():
     anime_df = get_all_anime()
 
     username = pick_random_user()
-    # this user was picked because he has a small number of anime
+    # this user can be picked because he has a small number of anime
     # and they fit nicely to a print
     # username = "terune_uzumaki"
     user_df = get_user_data(username)
@@ -24,15 +24,15 @@ def main():
     X_train = vectorize_anime(user_anime_df)
     y_train = user_scores_df['my_score'].to_numpy()
 
-    # from anime_df pick random X animes (X=1000)
-
     X_all = vectorize_anime(anime_df)
-    # run those animes into regression model and pick top 3
+
     # HERE we have all we need to start work
+
     y1_pred = linear_reg(X_train[:, 1:], y_train, X_all[:, 1:])
     y2_pred = random_forest(X_train[:, 1:], y_train, X_all[:, 1:])
     y3_pred = svm(X_train[:, 1:], y_train, X_all[:, 1:])
 
+    # sort by prediction
     mixed_lin = np.array([y1_pred, X_all[:, 0]]).T
     mixed_rf = np.array([y2_pred, X_all[:, 0]]).T
     mixed_svm = np.array([y3_pred, X_all[:, 0]]).T
@@ -41,10 +41,12 @@ def main():
     top_three_rf = mixed_lin[np.argsort(mixed_rf[:, 0])][::-1][:3]
     top_three_svm = mixed_lin[np.argsort(mixed_svm[:, 0])][::-1][:3]
 
+    # pick the necessary anime ids
     anime_ids_lin = top_three_lin[:, 1]
     anime_ids_rf = top_three_rf[:, 1]
     anime_ids_svm = top_three_svm[:, 1]
 
+    # get the anime titles
     matching_titles_lin = anime_df[anime_df['anime_id'].isin(
         anime_ids_lin)]['title'].tolist()
     matching_titles_rf = anime_df[anime_df['anime_id'].isin(
@@ -67,6 +69,7 @@ def main():
         f"2. {matching_titles_rf[1]}\n"
         f"3. {matching_titles_rf[2]}\n"
     )
+
     # Printing matching titles from linear regression model.
     print(
         "These are the top 3 animes for you according to the SVM model:\n"
