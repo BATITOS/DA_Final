@@ -32,6 +32,7 @@ def get_all_genres() -> set:
     return genresset
 
 
+# this example vector sets the shape for the vectors of the anime
 example_vector = None
 g_indices = None
 
@@ -105,12 +106,12 @@ def vectorize_anime(anime: pd.DataFrame):
         array[i, index] = 1
 
         # source
-        source = row['producer']
+        source = row['source']
         index = g_indices.index(source)
         array[i, index] = 1
 
         # atype
-        atype = row['producer']
+        atype = row['type']
         index = g_indices.index(atype)
         array[i, index] = 1
 
